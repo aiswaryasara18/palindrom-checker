@@ -1,67 +1,35 @@
-class PalindromeUC8 {
-
-    // Node class for Singly Linked List
-    static class Node {
-        char data;
-        Node next;
-
-        Node(char data) {
-            this.data = data;
-            this.next = null;
-        }
-    }
+class PalindromeUC10 {
 
     public static void main(String[] args) {
 
-        String word = "level";
+        // Original string
+        String text = "A man a plan a canal Panama";
 
-        // Convert string to linked list
-        Node head = null, tail = null;
-        for (char c : word.toCharArray()) {
-            Node newNode = new Node(c);
-            if (head == null) {
-                head = tail = newNode;
-            } else {
-                tail.next = newNode;
-                tail = newNode;
-            }
-        }
+        // Normalize string (remove spaces and convert to lowercase)
+        String normalized = text.replaceAll("\\s+", "").toLowerCase();
 
-        // Find middle using fast and slow pointers
-        Node slow = head, fast = head;
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
+        // Convert to char array
+        char[] arr = normalized.toCharArray();
 
-        // Reverse second half
-        Node prev = null, curr = slow;
-        while (curr != null) {
-            Node next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
-        }
-
-        // Compare first half and reversed second half
-        Node first = head;
-        Node second = prev;
+        int start = 0;
+        int end = arr.length - 1;
         boolean isPalindrome = true;
 
-        while (second != null) {
-            if (first.data != second.data) {
+        // Compare characters
+        while (start < end) {
+            if (arr[start] != arr[end]) {
                 isPalindrome = false;
                 break;
             }
-            first = first.next;
-            second = second.next;
+            start++;
+            end--;
         }
 
-        // Print result
+        // Display result
         if (isPalindrome) {
-            System.out.println(word + " is a Palindrome");
+            System.out.println("\"" + text + "\"" + " is a Palindrome (ignoring spaces and case)");
         } else {
-            System.out.println(word + " is not a Palindrome");
+            System.out.println("\"" + text + "\"" + " is not a Palindrome");
         }
     }
 }
