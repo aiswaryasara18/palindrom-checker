@@ -1,33 +1,60 @@
-```java id="7g7p4k"
-import java.util.Deque;
-import java.util.ArrayDeque;
+class PalindromeUC8 {
 
-class PalindromeUC7 {
+    // Node class for Singly Linked List
+    static class Node {
+        char data;
+        Node next;
+
+        Node(char data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
 
     public static void main(String[] args) {
 
-        // String to check
-        String word = "radar";
+        String word = "level";
 
-        // Create Deque
-        Deque<Character> deque = new ArrayDeque<>();
-
-        // Insert characters into deque
-        for (int i = 0; i < word.length(); i++) {
-            deque.addLast(word.charAt(i));
+        // Convert string to linked list
+        Node head = null, tail = null;
+        for (char c : word.toCharArray()) {
+            Node newNode = new Node(c);
+            if (head == null) {
+                head = tail = newNode;
+            } else {
+                tail.next = newNode;
+                tail = newNode;
+            }
         }
 
+        // Find middle using fast and slow pointers
+        Node slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // Reverse second half
+        Node prev = null, curr = slow;
+        while (curr != null) {
+            Node next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        // Compare first half and reversed second half
+        Node first = head;
+        Node second = prev;
         boolean isPalindrome = true;
 
-        // Compare front and rear elements
-        while (deque.size() > 1) {
-            char front = deque.removeFirst();
-            char rear = deque.removeLast();
-
-            if (front != rear) {
+        while (second != null) {
+            if (first.data != second.data) {
                 isPalindrome = false;
                 break;
             }
+            first = first.next;
+            second = second.next;
         }
 
         // Print result
@@ -38,4 +65,3 @@ class PalindromeUC7 {
         }
     }
 }
-```
