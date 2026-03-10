@@ -1,28 +1,35 @@
-```java
-class PalindromeUC9 {
+// PalindromeChecker class encapsulates the palindrome logic
+class PalindromeChecker {
 
-    // Recursive method to check palindrome
-    static boolean isPalindrome(String str, int start, int end) {
+    // Method to check palindrome
+    public boolean checkPalindrome(String text) {
 
-        // Base condition
-        if (start >= end) {
-            return true;
+        char[] arr = text.toCharArray();
+        int start = 0;
+        int end = arr.length - 1;
+
+        while (start < end) {
+            if (arr[start] != arr[end]) {
+                return false;
+            }
+            start++;
+            end--;
         }
-
-        // Compare characters
-        if (str.charAt(start) != str.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call
-        return isPalindrome(str, start + 1, end - 1);
+        return true;
     }
+}
+
+// Main class
+public class PalindromeUC11 {
 
     public static void main(String[] args) {
 
-        String word = "madam";
+        String word = "level";
 
-        boolean result = isPalindrome(word, 0, word.length() - 1);
+        // Create object of PalindromeChecker
+        PalindromeChecker checker = new PalindromeChecker();
+
+        boolean result = checker.checkPalindrome(word);
 
         if (result) {
             System.out.println(word + " is a Palindrome");
@@ -31,4 +38,3 @@ class PalindromeUC9 {
         }
     }
 }
-```
