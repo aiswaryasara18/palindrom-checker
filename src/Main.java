@@ -1,30 +1,30 @@
-import java.util.Stack;
-import java.util.Queue;
-import java.util.LinkedList;
+```java id="7g7p4k"
+import java.util.Deque;
+import java.util.ArrayDeque;
 
-class PalindromeUC6 {
+class PalindromeUC7 {
 
     public static void main(String[] args) {
 
         // String to check
-        String word = "level";
+        String word = "radar";
 
-        // Create Stack and Queue
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
+        // Create Deque
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Insert characters into Stack and Queue
+        // Insert characters into deque
         for (int i = 0; i < word.length(); i++) {
-            char ch = word.charAt(i);
-            stack.push(ch);      // LIFO
-            queue.add(ch);       // FIFO
+            deque.addLast(word.charAt(i));
         }
 
         boolean isPalindrome = true;
 
-        // Compare dequeue (queue) with pop (stack)
-        while (!stack.isEmpty()) {
-            if (stack.pop() != queue.remove()) {
+        // Compare front and rear elements
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
+
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
@@ -38,3 +38,4 @@ class PalindromeUC6 {
         }
     }
 }
+```
