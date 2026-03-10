@@ -1,35 +1,34 @@
-class PalindromeUC10 {
+```java
+class PalindromeUC9 {
+
+    // Recursive method to check palindrome
+    static boolean isPalindrome(String str, int start, int end) {
+
+        // Base condition
+        if (start >= end) {
+            return true;
+        }
+
+        // Compare characters
+        if (str.charAt(start) != str.charAt(end)) {
+            return false;
+        }
+
+        // Recursive call
+        return isPalindrome(str, start + 1, end - 1);
+    }
 
     public static void main(String[] args) {
 
-        // Original string
-        String text = "A man a plan a canal Panama";
+        String word = "madam";
 
-        // Normalize string (remove spaces and convert to lowercase)
-        String normalized = text.replaceAll("\\s+", "").toLowerCase();
+        boolean result = isPalindrome(word, 0, word.length() - 1);
 
-        // Convert to char array
-        char[] arr = normalized.toCharArray();
-
-        int start = 0;
-        int end = arr.length - 1;
-        boolean isPalindrome = true;
-
-        // Compare characters
-        while (start < end) {
-            if (arr[start] != arr[end]) {
-                isPalindrome = false;
-                break;
-            }
-            start++;
-            end--;
-        }
-
-        // Display result
-        if (isPalindrome) {
-            System.out.println("\"" + text + "\"" + " is a Palindrome (ignoring spaces and case)");
+        if (result) {
+            System.out.println(word + " is a Palindrome");
         } else {
-            System.out.println("\"" + text + "\"" + " is not a Palindrome");
+            System.out.println(word + " is not a Palindrome");
         }
     }
 }
+```
