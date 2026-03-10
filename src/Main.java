@@ -1,29 +1,32 @@
-```java
-class PalindromeUC4 {
+import java.util.Stack;
+
+class PalindromeUC5 {
 
     public static void main(String[] args) {
 
-        // Original string
-        String word = "radar";
+        // String to check
+        String word = "madam";
 
-        // Convert string to character array
-        char[] chars = word.toCharArray();
+        // Create stack
+        Stack<Character> stack = new Stack<>();
 
-        // Two-pointer approach
-        int start = 0;
-        int end = chars.length - 1;
+        // Push characters into stack
+        for (int i = 0; i < word.length(); i++) {
+            stack.push(word.charAt(i));
+        }
+
         boolean isPalindrome = true;
 
-        while (start < end) {
-            if (chars[start] != chars[end]) {
+        // Pop characters and compare
+        for (int i = 0; i < word.length(); i++) {
+            char ch = stack.pop();
+            if (word.charAt(i) != ch) {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
 
-        // Display result
+        // Print result
         if (isPalindrome) {
             System.out.println(word + " is a Palindrome");
         } else {
@@ -31,4 +34,3 @@ class PalindromeUC4 {
         }
     }
 }
-```
